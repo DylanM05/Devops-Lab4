@@ -20,6 +20,15 @@ steps:
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
+    feedsToUse: 'select'
+    vstsFeed: 'Lab4'
+- task: NuGetCommand@2
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+    nuGetFeedType: 'internal'
+    vstsFeed: 'Lab4'
+
 
 - task: VSBuild@1
   inputs:
